@@ -4,6 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { RecipeDetailComponent, RecipeItemComponent, RecipeListComponent } from './features/recipe-book';
 import { ShoppingListComponent, ShoppingListEditComponent } from './features/shopping/';
+import { HeaderComponent } from './header/header.component';
+import { RecipiesComponent } from './features/recipe-book/recipies.component';
 
 
 @NgModule({
@@ -13,7 +15,9 @@ import { ShoppingListComponent, ShoppingListEditComponent } from './features/sho
     ShoppingListEditComponent,
     RecipeDetailComponent,
     RecipeItemComponent,
-    RecipeListComponent
+    RecipeListComponent,
+    HeaderComponent,
+    RecipiesComponent
   ],
   imports: [
     BrowserModule
