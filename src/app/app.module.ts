@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { RecipeDetailComponent, RecipeItemComponent, RecipeListComponent } from './features/recipe-book';
@@ -20,7 +21,8 @@ import { RecipiesComponent } from './features/recipe-book/recipies.component';
     RecipiesComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

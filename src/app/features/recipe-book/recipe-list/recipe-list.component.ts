@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Recipe } from '../recipe.model';
 
 @Component({
@@ -13,12 +13,14 @@ export class RecipeListComponent {
 
   ];
 
-  constructor() {
+  @Output() showRecipeDetails = new EventEmitter<Recipe>();
 
-  }
+  constructor() {}
 
-  ngOnInit() {
+  ngOnInit() {}
 
+  showDetails(recipe: Recipe) {
+    this.showRecipeDetails.emit(recipe)
   }
 
 }
