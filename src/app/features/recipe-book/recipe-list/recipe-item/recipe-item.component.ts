@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Recipe } from '../../recipe.model';
+import { RecipiesService } from '../../recipies.service';
 
 @Component({
   selector: 'app-recipe-item',
@@ -10,8 +11,9 @@ export class RecipeItemComponent {
   @Input() recipe: Recipe;
   @Output() viewDetails = new EventEmitter<void>();
 
-  showRecipeDetails() {
-    this.viewDetails.emit();
+  constructor(private recipeService: RecipiesService) {}
 
+  showRecipeDetails() {
+    this.recipeService.recipeSelected.emit(this.recipe);
   }
 }

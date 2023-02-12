@@ -1,16 +1,22 @@
 import { Component } from '@angular/core';
 import { Recipe } from './recipe.model';
+import { RecipiesService } from './recipies.service';
 
 @Component({
   selector: 'app-recipies',
   templateUrl: './recipies.component.html',
-  styleUrls: ['./recipies.component.css']
+  styleUrls: ['./recipies.component.css'],
+  providers: [RecipiesService]
 })
 export class RecipiesComponent {
-  focussedRecipe: Recipe;
+  selectedRecipe: Recipe;
 
-  handleShowDetails(recipe: Recipe) {
-    this.focussedRecipe = recipe;
+  constructor(private recipesService: RecipiesService) {}
+
+  ngOnInit() {
+    this.recipesService.recipeSelected.
+      subscribe((recipe: Recipe) => {
+        this.selectedRecipe = recipe;
+      })
   }
-
 }

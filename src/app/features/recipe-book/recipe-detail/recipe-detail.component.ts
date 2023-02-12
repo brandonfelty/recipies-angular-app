@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { Ingredient } from 'src/app/shared/Ingredient.model';
+import { ShoppingListService } from '../../shopping/shopping-list.service';
 import { Recipe } from '../recipe.model';
 
 @Component({
@@ -9,4 +11,12 @@ import { Recipe } from '../recipe.model';
 export class RecipeDetailComponent {
   @Input() recipe: Recipe;
 
+  constructor(private shoppingListService: ShoppingListService) {}
+
+  addIngredient() {
+    const ingredients: Ingredient[] = this.recipe.ingredients;
+    ingredients.forEach((ingredient: Ingredient) => {
+      this.shoppingListService.addIngredient(ingredient);
+    })
+  }
 }
