@@ -9,6 +9,7 @@ import { HeaderComponent } from './header/header.component';
 import { RecipiesComponent } from './features/recipe-book/recipies.component';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { ShoppingListService } from './features/shopping/shopping-list.service';
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { ShoppingListService } from './features/shopping/shopping-list.service';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [ShoppingListService],
   bootstrap: [AppComponent]

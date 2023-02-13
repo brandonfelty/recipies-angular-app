@@ -10,8 +10,8 @@
 
     <div class="navbar-collapse" [class.collapse]="collapsed" (window:resize)="collapsed = true">
       <ul class="nav navbar-nav">
-        <li (click)="onChangePage('recipies')"><a href="#">Recipies</a></li>
-        <li (click)="onChangePage('shopping-list')"><a href="#">Shopping List</a></li>
+        <li><a routerLink="/recipes">Recipes</a></li>
+        <li><a routerLink="/shopping-list">Shopping List</a></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">

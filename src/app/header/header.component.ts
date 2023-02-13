@@ -6,10 +6,5 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  @Output() changePage = new EventEmitter<string>();
   collapsed = true;
-
-  onChangePage(page: string) {
-    this.changePage.emit(page);
-  }
 }
