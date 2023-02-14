@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Recipe } from '../../recipe.model';
 import { RecipiesService } from '../../recipies.service';
 
@@ -9,11 +10,12 @@ import { RecipiesService } from '../../recipies.service';
 })
 export class RecipeItemComponent {
   @Input() recipe: Recipe;
-  @Output() viewDetails = new EventEmitter<void>();
+  // @Output() viewDetails = new EventEmitter<void>();
 
-  constructor(private recipeService: RecipiesService) {}
+  constructor(private recipeService: RecipiesService, private activeRoute: ActivatedRoute, private router: Router) {}
 
   showRecipeDetails() {
-    this.recipeService.recipeSelected.emit(this.recipe);
+    // this.recipeService.recipeSelected.emit(this.recipe);
+    this.router.navigate(['recipes', this.recipe.id])
   }
 }
