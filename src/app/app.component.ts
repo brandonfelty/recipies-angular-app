@@ -7,14 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'recipies-angular-app';
-  showRecipies: boolean = true;
 
-  onPageChange(page: string) {
 
-    if (page === 'recipies') {
-      this.showRecipies = true;
-    } else {
-      this.showRecipies = false;
-    }
-  }
 }
