@@ -1,6 +1,7 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { Ingredient } from 'src/app/shared/Ingredient.model';
 import { ShoppingListService } from '../../shopping-list.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-shopping-list-edit',
@@ -10,6 +11,7 @@ import { ShoppingListService } from '../../shopping-list.service';
 export class ShoppingListEditComponent {
   @ViewChild('nameInput') nameInputRef: ElementRef;
   @ViewChild('amountInput') amountInputRef: ElementRef;
+  private newIngredient: Subscription;
 
   constructor(private shoppingListService: ShoppingListService) {}
 
@@ -17,7 +19,7 @@ export class ShoppingListEditComponent {
     const ingName = this.nameInputRef.nativeElement.value;
     const ingAmount = this.amountInputRef.nativeElement.value;
     this.shoppingListService.newIngredient
-      .emit(new Ingredient(
+      .next(new Ingredient(
         ingName,
         +ingAmount
       ))
