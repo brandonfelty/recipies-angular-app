@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { RecipeDetailComponent } from './features/recipe-book';
 import { DefaultrecipeComponent } from './features/recipe-book/defaultrecipe/defaultrecipe.component';
 import { RecipeEditComponent } from './features/recipe-book/recipe-edit/recipe-edit.component';
+import { RecipesResolverService } from './features/recipe-book/recipes-resolver.service';
 import { RecipiesComponent } from './features/recipe-book/recipes.component';
 import { ShoppingListComponent } from './features/shopping';
 import { PageErrorComponent } from './page-error/page-error.component';
@@ -13,8 +14,8 @@ const routes: Routes = [
   { path: 'recipes', component: RecipiesComponent, children: [
     { path: '', component: DefaultrecipeComponent },
     { path: 'new', component: RecipeEditComponent },
-    { path: ':id', component: RecipeDetailComponent },
-    { path: ':id/edit', component: RecipeEditComponent }
+    { path: ':id', component: RecipeDetailComponent, resolve: [RecipesResolverService] },
+    { path: ':id/edit', component: RecipeEditComponent, resolve: [RecipesResolverService] }
   ] },
   { path: 'shopping-list', component: ShoppingListComponent },
   { path: '404', component: PageErrorComponent},

@@ -14,6 +14,7 @@ import { DefaultrecipeComponent } from './features/recipe-book/defaultrecipe/def
 import { RecipeEditComponent } from './features/recipe-book/recipe-edit/recipe-edit.component';
 import { PageErrorComponent } from './page-error/page-error.component';
 import { RecipesService } from './features/recipe-book/recipes.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { RecipesService } from './features/recipe-book/recipes.service';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [ShoppingListService, RecipesService],

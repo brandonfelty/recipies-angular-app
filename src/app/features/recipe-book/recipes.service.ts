@@ -11,25 +11,30 @@ export class RecipesService {
   constructor(private shoppingListService: ShoppingListService) {}
 
   private recipes: Recipe[] = [
-    new Recipe(
-      0,
-      'test recipe',
-      'this is a test recipe',
-      'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg',
-      [
-        new Ingredient('meat', 3),
-        new Ingredient('tomatoes', 9),
-    ]),
-    new Recipe(
-      1,
-      'test recipe 2',
-      'this is a test recipe 2',
-      'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg',
-      [
-        new Ingredient('corn', 10),
-        new Ingredient('pasta', 10),
-    ]),
+    // new Recipe(
+    //   0,
+    //   'test recipe',
+    //   'this is a test recipe',
+    //   'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg',
+    //   [
+    //     new Ingredient('meat', 3),
+    //     new Ingredient('tomatoes', 9),
+    // ]),
+    // new Recipe(
+    //   1,
+    //   'test recipe 2',
+    //   'this is a test recipe 2',
+    //   'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg',
+    //   [
+    //     new Ingredient('corn', 10),
+    //     new Ingredient('pasta', 10),
+    // ]),
   ];
+
+  setRecipes(recipes: Recipe[]) {
+    this.recipes = recipes;
+    this.newRecipeAdded.next(this.recipes.slice());
+  }
 
   getRecipes() {
     return this.recipes.slice();
