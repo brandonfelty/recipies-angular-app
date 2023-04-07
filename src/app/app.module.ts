@@ -14,12 +14,18 @@ import { DefaultrecipeComponent } from './features/recipe-book/defaultrecipe/def
 import { RecipeEditComponent } from './features/recipe-book/recipe-edit/recipe-edit.component';
 import { PageErrorComponent } from './page-error/page-error.component';
 import { RecipesService } from './features/recipe-book/recipes.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthComponent } from './auth/auth.component';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import { AuthInterceptorService } from './auth/auth.interceptor';
+import { AlertComponent } from './shared/alert/alert.component';
+import { PlaceholderDirective } from './shared/placeholder/placeholder.directive';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    AuthComponent,
     ShoppingListComponent,
     ShoppingListEditComponent,
     RecipeDetailComponent,
@@ -30,7 +36,10 @@ import { HttpClientModule } from '@angular/common/http';
     DropdownDirective,
     DefaultrecipeComponent,
     RecipeEditComponent,
-    PageErrorComponent
+    PageErrorComponent,
+    LoadingSpinnerComponent,
+    AlertComponent,
+    PlaceholderDirective
   ],
   imports: [
     BrowserModule,
@@ -39,7 +48,8 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [ShoppingListService, RecipesService],
-  bootstrap: [AppComponent]
+  providers: [ShoppingListService, RecipesService, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
+  bootstrap: [AppComponent],
+  entryComponents: [AlertComponent]
 })
 export class AppModule { }
