@@ -84,6 +84,8 @@ export class AuthComponent implements OnDestroy {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
     this.error = null;
-    this.closeSub.unsubscribe();
+    if (this.closeSub) {
+      this.closeSub.unsubscribe();
+    }
   }
 }
