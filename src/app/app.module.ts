@@ -9,7 +9,14 @@ import { PageErrorComponent } from './page-error/page-error.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core.module';
-import { LoggingService } from './logging.service';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import * as fromApp from './store/app.reducer';
+import { AuthEffects } from './auth/store/auth.effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment.development';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { RecipeEffects } from './features/recipe-book/store/recipe.effects';
 
 @NgModule({
   declarations: [
@@ -22,10 +29,13 @@ import { LoggingService } from './logging.service';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    StoreModule.forRoot(fromApp.appReducer),
+    EffectsModule.forRoot([AuthEffects, RecipeEffects]),
+    StoreDevtoolsModule.instrument({ logOnly: environment.production }),
+    StoreRouterConnectingModule.forRoot(),
     SharedModule,
     CoreModule,
   ],
-  // providers: [LoggingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

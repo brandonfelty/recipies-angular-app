@@ -1,35 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Ingredient } from 'src/app/shared/Ingredient.model';
-import { ShoppingListService } from '../shopping/shopping-list.service';
 import { Recipe } from "./recipe.model";
-
+import { Store } from '@ngrx/store';
+import * as ShoppingListActions from '../shopping/shopping-list/store/shopping-list.actions';
+import * as fromApp from '../../store/app.reducer';
 @Injectable()
 export class RecipesService {
   newRecipeAdded: Subject<Recipe[]> = new Subject();
 
-  constructor(private shoppingListService: ShoppingListService) {}
+  constructor(
+    private _store: Store<fromApp.AppState>
+  ) {}
 
-  private recipes: Recipe[] = [
-    // new Recipe(
-    //   0,
-    //   'test recipe',
-    //   'this is a test recipe',
-    //   'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg',
-    //   [
-    //     new Ingredient('meat', 3),
-    //     new Ingredient('tomatoes', 9),
-    // ]),
-    // new Recipe(
-    //   1,
-    //   'test recipe 2',
-    //   'this is a test recipe 2',
-    //   'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg',
-    //   [
-    //     new Ingredient('corn', 10),
-    //     new Ingredient('pasta', 10),
-    // ]),
-  ];
+  private recipes: Recipe[] = [];
 
   setRecipes(recipes: Recipe[]) {
     this.recipes = recipes;
@@ -63,8 +47,6 @@ export class RecipesService {
   }
 
   addToShopping(ingredients: Ingredient[]) {
-    ingredients.forEach(ingredient => {
-      this.shoppingListService.addIngredient(ingredient);
-    })
+    this._store.dispatch(new ShoppingListActions.AddIngredients(ingredients));
   }
 }
