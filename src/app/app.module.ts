@@ -26,7 +26,7 @@ import { RecipeEffects } from './features/recipe-book/store/recipe.effects';
     PageErrorComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     HttpClientModule,
     AppRoutingModule,
     StoreModule.forRoot(fromApp.appReducer),
